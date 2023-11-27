@@ -18,7 +18,7 @@ CPPFLAGS  = -Wall -Wextra -Werror -std=c++98
 #CPPFLAGS  = -Wall -Wextra -Werror -std=c++98 -pedantic -g -fsanitize=address
 
 HEADERS =
-SRCS    = main.cpp log.cpp
+SRCS    = main.cpp 
 
 # ---------------------------------------------------------------------------- #
 
