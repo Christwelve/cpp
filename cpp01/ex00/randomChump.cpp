@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   randomChump.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/29 21:19:21 by cmeng             #+#    #+#             */
-/*   Updated: 2023/11/30 02:13:29 by cmeng            ###   ########.fr       */
+/*   Created: 2023/11/29 21:41:13 by cmeng             #+#    #+#             */
+/*   Updated: 2023/11/29 23:02:25 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-int main(void)
+void    randomChump(std::string name)
 {
-    Zombie *Zombie;
-
-    Zombie = newZombie("HeapZombie");
-    Zombie->announce();
-    delete Zombie;
-    randomChump("StackZombie");
-    return (0);
+    Zombie Zombie;
+    Zombie.set_name(name);
+    Zombie.announce();
 }

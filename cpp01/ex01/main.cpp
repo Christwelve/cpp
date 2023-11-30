@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:19:21 by cmeng             #+#    #+#             */
-/*   Updated: 2023/11/30 02:13:29 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/11/30 02:33:38 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 int main(void)
 {
-    Zombie *Zombie;
-
-    Zombie = newZombie("HeapZombie");
-    Zombie->announce();
-    delete Zombie;
-    randomChump("StackZombie");
+    Zombie *allZombies = zombieHorde(10, "Zombie");
+   
+    delete [] allZombies;
     return (0);
 }
