@@ -1,0 +1,19 @@
+settings.json
+
+"cpplint.cpplintPath": "/Users/cmeng/Library/Python/3.9/bin",
+    "cpplint.verbose": 5,
+    "cpplint.lineLength": 80,
+    "cpplint.filters": [
+        "-legal/copyright",
+        "-build/include_subdir",
+        "-build/header_guard",
+        "-runtime/explicit"
+    ],
+    "cpplint.brace-style": "attached",
+
+
+cpplint.cfg
+
+set noparent
+filter=-legal/copyright,-build/include_subdir,-build/header_guard,-runtime/explicit
+linelength=80

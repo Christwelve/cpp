@@ -6,14 +6,13 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 02:52:48 by cmeng             #+#    #+#             */
-/*   Updated: 2023/11/30 03:07:22 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/08 17:38:56 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 
-int main () 
-{
+int main() {
     std::string str = "HI THIS IS BRAIN";
     std::string *stringPTR = &str;
     std::string &stringREF = str;

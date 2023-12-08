@@ -6,31 +6,23 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 04:44:35 by cmeng             #+#    #+#             */
-/*   Updated: 2023/11/30 05:24:27 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/08 17:40:23 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanB.hpp"
 
-HumanB::HumanB(std::string name) : m_name(name)
-{
-    return;
-}
+#include "string"
 
-HumanB::~HumanB(void)
-{
-    return;
-}
+HumanB::HumanB(std::string name) : name_(name) { return; }
 
-void HumanB::setWeapon(Weapon& weapon)
-{
-    m_weapon = &weapon;
-}
+HumanB::~HumanB(void) { return; }
 
-void HumanB::attack()
-{
-    if (m_weapon)
-        std::cout << m_name << " attacks with their " << m_weapon->getType() << std::endl;
+void HumanB::setWeapon(Weapon &weapon) { weapon_ = &weapon; }
+
+void HumanB::attack() {
+    if (weapon_)
+        std::cout << name_ << " attacks with their " << weapon_->getType() << std::endl;
     else
-        std::cout << m_name << " is unarmed" << std::endl;    
+        std::cout << name_ << " is unarmed" << std::endl;
 }
