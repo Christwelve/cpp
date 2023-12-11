@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Replace.hpp                                        :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/30 05:52:04 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/11 12:47:56 by cmeng            ###   ########.fr       */
+/*   Created: 2023/12/11 10:13:46 by cmeng             #+#    #+#             */
+/*   Updated: 2023/12/11 12:37:08 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL_H
-#define HARL_H
+#include "Harl.hpp"
 
-#include <fstream>
-#include <iostream>
-#include <string>
-
-class Replace {
-   public:
-    Replace(std::string filename, std::string s1, std::string s2);
-    ~Replace();
-    void replace();
-
-   private:
-    std::string filename_;
-    std::string s1_;
-    std::string s2_;
-};
-
-#endif
+int main() {
+    Harl harl;
+    harl.complain("DEBUG");
+    harl.complain("INFO");
+    harl.complain("WARNING");
+    harl.complain("ERROR");
+    return (0);
+}
