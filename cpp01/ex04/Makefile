@@ -6,7 +6,7 @@
 #    By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 21:59:29 by cmeng             #+#    #+#              #
-#    Updated: 2023/11/30 05:49:56 by cmeng            ###   ########.fr        #
+#    Updated: 2023/12/11 09:02:16 by cmeng            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ CC        = c++
 CPPFLAGS  = -Wall -Wextra -Werror -std=c++98 
 # CPPFLAGS  = -Wall -Wextra -Werror -std=c++98 -pedantic -g -fsanitize=address
 
-HEADERS = 
-SRCS    = main.cpp 
+HEADERS = Replace.hpp
+SRCS    = main.cpp Replace.cpp 
 
 # ---------------------------------------------------------------------------- #
 
