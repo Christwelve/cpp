@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 03:15:11 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/11 12:50:59 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/11 16:14:51 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 class Weapon {
    public:
     Weapon(std::string type);
-    ~Weapon(void);
+    ~Weapon();
     void setType(std::string type);
     const std::string& getType() const;
 

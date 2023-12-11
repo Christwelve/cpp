@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:22:17 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/11 12:53:05 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/11 16:14:05 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 class Zombie {
    public:
-    Zombie(void);
-    ~Zombie(void);
+    Zombie();
+    ~Zombie();
     void announce(void);
     void set_name(std::string name);
 

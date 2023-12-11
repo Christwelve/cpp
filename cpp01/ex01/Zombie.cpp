@@ -6,13 +6,13 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:21:43 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/08 17:41:10 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/11 16:13:04 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie::Zombie(void) { return; }
+Zombie::Zombie(void) {}
 
 Zombie::~Zombie(void) {
     std::cout << name_ << " destroyed" << std::endl;

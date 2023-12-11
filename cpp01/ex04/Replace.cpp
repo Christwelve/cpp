@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 06:00:29 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/11 12:46:26 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/11 16:13:04 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Replace::Replace(std::string filename, std::string s1, std::string s2)
     return;
 };
 
-Replace::~Replace() { return; }
+Replace::~Replace() {}
 
 void Replace::replace() {
     std::fstream inFile(filename_);

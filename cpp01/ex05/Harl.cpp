@@ -6,15 +6,15 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 09:17:55 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/11 12:37:44 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/11 16:13:04 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 
-Harl::Harl() { return; }
+Harl::Harl() {}
 
-Harl::~Harl() { return; }
+Harl::~Harl() {}
 
 void Harl::complain(std::string level) {
     std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};

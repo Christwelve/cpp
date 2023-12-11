@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 04:44:35 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/11 12:51:26 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/11 16:13:04 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 #include "string"
 
-HumanB::HumanB(std::string name) : name_(name) { return; }
+HumanB::HumanB(std::string name) : name_(name) {}
 
-HumanB::~HumanB(void) { return; }
+HumanB::~HumanB(void) {}
 
 void HumanB::setWeapon(Weapon &weapon) { weapon_ = &weapon; }
 
