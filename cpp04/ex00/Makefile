@@ -6,7 +6,7 @@
 #    By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 21:59:29 by cmeng             #+#    #+#              #
-#    Updated: 2023/12/13 09:25:35 by cmeng            ###   ########.fr        #
+#    Updated: 2023/12/13 12:26:27 by cmeng            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ CC        = c++
 CPPFLAGS  = -Wall -Wextra -Werror -std=c++98 
 # CPPFLAGS  = -Wall -Wextra -Werror -std=c++98 -pedantic -g -fsanitize=address
 
-HEADERS = Animal.hpp Cat.hpp Dog.hpp
-SRCS    = main.cpp Animal.cpp Cat.cpp Dog.cpp
+HEADERS = Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp
+SRCS    = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp
 
 # ---------------------------------------------------------------------------- #
 
