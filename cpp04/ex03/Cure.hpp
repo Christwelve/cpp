@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 13:43:00 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/14 16:46:18 by cmeng            ###   ########.fr       */
+/*   Created: 2023/12/14 09:24:45 by cmeng             #+#    #+#             */
+/*   Updated: 2023/12/14 09:31:02 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_H
-#define PHONEBOOK_H
-#define MAX_CONTACTS 8
+#ifndef CURE_HPP
+#define CURE_HPP
 
-#include <iostream>
-
-#include "Contact.hpp"
-
-class PhoneBook {
+class Cure : public AMateria {
    public:
-    PhoneBook();
-    ~PhoneBook();
+    Cure(void);                         // Default Constructor
+    Cure(const std::string &str);       // Constructor
+    Cure(const Cure &cure);             // Copy Constructor
+    Cure &operator=(const Cure &cure);  // Assignation Operator
+    ~Cure();                            // Destructor
 
-    std::string get_input(const std::string prompt);
-    std::string truncate(std::string str);
-    void addContact();
-    void displayContacts();
+    virtual Cure *clone() const;
+    virtual void use(ICharacter &target);
 
    private:
-    Contact contacts_[8];
-    size_t index_;
-    size_t maxIndex_;
 };
 
 #endif

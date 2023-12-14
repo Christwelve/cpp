@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:42:47 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/14 08:48:57 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/14 16:55:45 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ PhoneBook::~PhoneBook() {}
 
 std::string PhoneBook::get_input(const std::string prompt) {
     std::string input;
+
     while (1) {
         std::cout << prompt;
         std::getline(std::cin, input);
         if (std::cin.eof()) {
             std::cout << "Phonebook closed" << std::endl;
-            exit(0);
+            throw std::exception();
         }
         if (input.length() > 0) {
             return (input);
@@ -40,6 +41,7 @@ std::string PhoneBook::truncate(std::string str) {
     }
     return (str);
 }
+
 void PhoneBook::addContact() {
     std::string fn = get_input("First name: ");
     std::string ln = get_input("Last name: ");

@@ -1,37 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 13:43:00 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/14 16:46:18 by cmeng            ###   ########.fr       */
+/*   Created: 2023/12/14 09:29:56 by cmeng             #+#    #+#             */
+/*   Updated: 2023/12/14 11:47:16 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_H
-#define PHONEBOOK_H
-#define MAX_CONTACTS 8
+#include "Cure.hpp"
 
-#include <iostream>
+#include "AMateria.hpp"
 
-#include "Contact.hpp"
+Cure::Cure(void) : AMateria("cure") {}
 
-class PhoneBook {
-   public:
-    PhoneBook();
-    ~PhoneBook();
-
-    std::string get_input(const std::string prompt);
-    std::string truncate(std::string str);
-    void addContact();
-    void displayContacts();
-
-   private:
-    Contact contacts_[8];
-    size_t index_;
-    size_t maxIndex_;
-};
-
-#endif
+// Cure::Cure *clone() const { return new Cure(); }

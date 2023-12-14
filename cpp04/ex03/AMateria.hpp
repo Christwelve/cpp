@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:22:27 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/14 08:54:06 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/14 09:23:25 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ class AMateria {
     virtual void use(ICharacter &target);
 
    protected:
+    std::string type_;
 };
 
 #endif
