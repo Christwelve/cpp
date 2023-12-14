@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phoneBook.hpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:43:00 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/11 18:33:20 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/14 07:10:30 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ class PhoneBook {
    public:
     PhoneBook();
     ~PhoneBook();
+
     std::string get_input(const std::string prompt);
     std::string truncate(std::string str);
     void addContact();

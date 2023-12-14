@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phoneBook.cpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:42:47 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/11 18:54:34 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/14 08:48:57 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void PhoneBook::addContact() {
 
     contacts_[index_ % MAX_CONTACTS] = Contact(fn, ln, nn, pn, ds);
     index_++;
-    maxIndex_ = index_ >= MAX_CONTACTS ? MAX_CONTACTS - 1 : index_;
+    maxIndex_ = index_ >= MAX_CONTACTS ? MAX_CONTACTS : index_;
 }
 
 void PhoneBook::displayContacts() {
@@ -57,6 +57,15 @@ void PhoneBook::displayContacts() {
         std::cout << "No contacts" << std::endl;
         return;
     }
+
+    std::cout << std::setw(10) << "index"
+              << "|";
+    std::cout << std::setw(10) << "f_name"
+              << "|";
+    std::cout << std::setw(10) << "l_name"
+              << "|";
+    std::cout << std::setw(10) << "n_name" << std::endl;
+
     for (size_t i = 0; i < maxIndex_; i++) {
         std::cout << std::setw(10) << i << "|";
         std::cout << std::setw(10) << truncate(contacts_[i].getFirstName()) << "|";
@@ -78,9 +87,9 @@ void PhoneBook::displayContacts() {
         return;
     }
 
-    std::cout << contacts_[i].getFirstName() << std::endl;
-    std::cout << contacts_[i].getLastName() << std::endl;
-    std::cout << contacts_[i].getNickname() << std::endl;
-    std::cout << contacts_[i].getPhoneNumber() << std::endl;
-    std::cout << contacts_[i].getDarkestSecret() << std::endl;
+    std::cout << "f_name:\t" << contacts_[i].getFirstName() << std::endl;
+    std::cout << "l_name:\t" << contacts_[i].getLastName() << std::endl;
+    std::cout << "n_name:\t" << contacts_[i].getNickname() << std::endl;
+    std::cout << "phone:\t" << contacts_[i].getPhoneNumber() << std::endl;
+    std::cout << "secret:\t" << contacts_[i].getDarkestSecret() << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:10:02 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/13 12:58:18 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/14 08:53:55 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ Cat::Cat(const Cat &cat) : Animal(cat), brain_(new Brain(*cat.brain_)) {
 }
 
 Cat &Cat::operator=(const Cat &cat) {
-    std::cout << "Cat assignation operator called" << std::endl;
+    std::cout << "Cat copy assignment operator called" << std::endl;
     this->Animal::operator=(cat);
-    delete brain_;
-    brain_ = new Brain(*cat.brain_);
+    // delete brain_;
+    // brain_ = new Brain(*cat.brain_);
     return (*this);
 }
 

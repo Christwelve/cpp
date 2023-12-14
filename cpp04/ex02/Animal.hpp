@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 09:26:02 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/13 14:35:51 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/14 08:54:06 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class Animal {
     Animal(void);                             // Default constructor
     Animal(const std::string &str);           // Constructor
     Animal(const Animal &animal);             // Copy constructor
-    Animal &operator=(const Animal &animal);  // Assignation operator overload
+    Animal &operator=(const Animal &animal);  // Copy assignment operator overload
     virtual ~Animal();                        // Destructor
 
     virtual void makeSound(void) const = 0;

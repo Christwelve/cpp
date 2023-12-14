@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:18:47 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/13 12:35:01 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/14 08:54:06 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class WrongAnimal {
     WrongAnimal(void);                                  // Default constructor
     WrongAnimal(const std::string &str);                // Constructor
     WrongAnimal(const WrongAnimal &animal);             // Copy constructor
-    WrongAnimal &operator=(const WrongAnimal &animal);  // Assignation operator overload
+    WrongAnimal &operator=(const WrongAnimal &animal);  // Copy assignment operator overload
     virtual ~WrongAnimal();                             // Destructor
 
     void makeSound(void) const;

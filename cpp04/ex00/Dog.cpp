@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:00:43 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/13 11:49:19 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/14 08:53:56 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Dog::Dog(const Dog &dog) {
 }
 
 Dog &Dog::operator=(const Dog &dog) {
-    std::cout << "Dog assignation operator called" << std::endl;
+    std::cout << "Dog copy assignment operator called" << std::endl;
     this->Animal::operator=(dog);
     return (*this);
 }

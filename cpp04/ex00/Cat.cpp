@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:10:02 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/13 11:50:08 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/14 08:53:56 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Cat::Cat(const Cat &cat) {
 }
 
 Cat &Cat::operator=(const Cat &cat) {
-    std::cout << "Cat assignation operator called" << std::endl;
+    std::cout << "Cat copy assignment operator called" << std::endl;
     this->Animal::operator=(cat);
     return (*this);
 }

@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:48:14 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/13 12:48:38 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/14 08:53:56 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Brain::Brain(const Brain &brain) {
 }
 
 Brain &Brain::operator=(const Brain &brain) {
-    std::cout << "Brain assignation operator called" << std::endl;
+    std::cout << "Brain copy assignment operator called" << std::endl;
     for (int i = 0; i < 100; i++) {
         ideas_[i] = brain.ideas_[i];
     }

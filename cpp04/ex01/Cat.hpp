@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:03:49 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/13 12:52:38 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/14 08:54:06 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class Cat : public Animal {
    public:
     Cat(void);                       // Default Constructor
     Cat(const Cat &cat);             // Copy Constructor
-    Cat &operator=(const Cat &cat);  // Assignation Operator
+    Cat &operator=(const Cat &cat);  // Copy assignment Operator
     ~Cat();                          // Destructor
 
     void makeSound(void) const;
