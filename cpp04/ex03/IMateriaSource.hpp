@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   IMateriaSource.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/11 13:43:00 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/17 17:44:52 by cmeng            ###   ########.fr       */
+/*   Created: 2023/12/16 15:48:06 by cmeng             #+#    #+#             */
+/*   Updated: 2023/12/16 16:33:01 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_H
-#define PHONEBOOK_H
-#define MAX_CONTACTS 8
+#ifndef IMATERIASOURCE_HPP
+#define IMATERIASOURCE_HPP
 
-#include <iostream>
+#include "AMateria.hpp"
 
-#include "Contact.hpp"
-
-class PhoneBook {
+class IMateriaSource {
    public:
-    PhoneBook();
-    ~PhoneBook();
-
-    std::string get_input(const std::string prompt);
-    std::string truncate(std::string str);
-    void addContact();
-    void displayContacts();
-
-   private:
-    Contact contacts_[8];
-    size_t index_;
-    size_t maxIndex_;
+    virtual ~IMateriaSource() {}
+    virtual void learnMateria(AMateria*) = 0;
+    virtual AMateria* createMateria(std::string const& type) = 0;
 };
 
 #endif

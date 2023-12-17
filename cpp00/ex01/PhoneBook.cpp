@@ -6,13 +6,14 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:42:47 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/14 16:55:45 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/17 19:32:39 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
 #include <iomanip>
+#include <sstream>
 
 PhoneBook::PhoneBook() : index_(0), maxIndex_(0) {}
 
@@ -79,7 +80,10 @@ void PhoneBook::displayContacts() {
     input = get_input("Enter an index: ");
     size_t i;
     try {
-        i = std::stoi(input);
+        std::istringstream iss(input);
+        if (!(iss >> i) || !iss.eof()) {
+            throw std::exception();
+        }
     } catch (const std::exception& e) {
         std::cout << "Invalid Input" << std::endl;
         return;

@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:22:27 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/14 09:23:25 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/16 16:12:42 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 #include "ICharacter.hpp"
 
+// #include "IMateriaSource.hpp"
+
 class AMateria {
    public:
     AMateria(void);                                 // Default Constructor
@@ -26,7 +28,6 @@ class AMateria {
     ~AMateria();                                    // Destructor
 
     std::string const &getType() const;  // Returns the materia type
-    virtual AMateria *clone() const = 0;
     virtual void use(ICharacter &target);
 
    protected:
