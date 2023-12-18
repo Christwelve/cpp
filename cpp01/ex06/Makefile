@@ -6,7 +6,7 @@
 #    By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 21:59:29 by cmeng             #+#    #+#              #
-#    Updated: 2023/12/11 10:18:52 by cmeng            ###   ########.fr        #
+#    Updated: 2023/12/18 13:40:11 by cmeng            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME = harlFilter
 
 CC        = c++
-CPPFLAGS  = -Wall -Wextra -Werror -std=c++98 
+CPPFLAGS  = -Wall -Wextra -Werror -std=c++98 -pedantic
 # CPPFLAGS  = -Wall -Wextra -Werror -std=c++98 -pedantic -g -fsanitize=address
 
 HEADERS = Harl.hpp
