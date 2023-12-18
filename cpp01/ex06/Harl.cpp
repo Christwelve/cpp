@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 09:17:55 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/11 16:13:04 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/18 13:31:30 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,13 @@ void Harl::complain(std::string level) {
     switch (i) {
         case 0:
             (this->*funcs[0])();
+            // fallthrough
         case 1:
             (this->*funcs[1])();
+            // fallthrough
         case 2:
             (this->*funcs[2])();
+            // fallthrough
         case 3:
             (this->*funcs[3])();
             break;

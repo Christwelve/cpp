@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 06:00:29 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/11 16:13:04 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/18 13:20:00 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ Replace::Replace(std::string filename, std::string s1, std::string s2)
 Replace::~Replace() {}
 
 void Replace::replace() {
-    std::fstream inFile(filename_);
+    std::fstream inFile(filename_.c_str());
     if (!inFile) {
         std::cerr << "Can't open file" << filename_ << std::endl;
         return;
     }
 
-    std::ofstream outFile(filename_ + ".replace");
+    std::ofstream outFile((filename_ + ".replace").c_str());
     if (!outFile) {
         std::cerr << "Can't open file " << filename_ + ".replace" << std::endl;
         return;
