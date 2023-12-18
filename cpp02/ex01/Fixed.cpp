@@ -6,11 +6,13 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 07:54:07 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/12 10:24:16 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/18 18:34:16 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+
+#include <cmath>
 
 Fixed::Fixed(void) : value_(0) { std::cout << "Default constructor called" << std::endl; }
 

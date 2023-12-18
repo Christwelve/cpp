@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 09:17:55 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/18 13:31:30 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/18 16:01:55 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void Harl::complain(std::string level) {
             (this->*funcs[3])();
             break;
         default:
-            std::cout << "[ Probably complaining about insignificant problems ]"
+            std::cerr << "[ Probably complaining about insignificant problems ]"
                       << std::endl;
     }
 }
