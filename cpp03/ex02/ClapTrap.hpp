@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 12:22:23 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/12 19:30:05 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/19 21:36:22 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,21 @@
 
 class ClapTrap {
    public:
-    ClapTrap();                          // Default Constructor
-    ClapTrap(std::string name);          // Constructor
-    ClapTrap(const ClapTrap &clapTrap);  // CopyConstructor
-    ~ClapTrap();                         // Destructor
-
-    ClapTrap &operator=(const ClapTrap &clapTrap);
+    ClapTrap();                                     // Default Constructor
+    ClapTrap(std::string name);                     // Constructor
+    ClapTrap(const ClapTrap &clapTrap);             // CopyConstructor
+    ClapTrap &operator=(const ClapTrap &clapTrap);  // CopyAssignmentConstructor
+    ~ClapTrap();                                    // Destructor
 
     void attack(const std::string &target);
     void takeDamage(unsigned int amount);
     void beRepaired(unsigned int amount);
 
-    void setName(std::string name);
-    void setHitPoints(int hitPoints);
-    void setEnergyPoints(int energyPoints);
-    void setAttackDamage(int attackDamage);
-
-    std::string getName() const;
-    int getHitPoints() const;
-    int getEnergyPoints() const;
-    int getAttackDamage() const;
-
-   private:
+   protected:
     std::string name_;
-    int hitPoints_;
-    int energyPoints_;
-    int attackDamage_;
+    unsigned int hitPoints_;
+    unsigned int energyPoints_;
+    unsigned int attackDamage_;
 };
 
 #endif
