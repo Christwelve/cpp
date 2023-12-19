@@ -6,12 +6,12 @@
 #    By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 21:59:29 by cmeng             #+#    #+#              #
-#    Updated: 2023/12/12 16:55:44 by cmeng            ###   ########.fr        #
+#    Updated: 2023/12/19 20:46:14 by cmeng            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME = SkavTrap
+NAME = ScavTrap
 
 CC        = c++
 CPPFLAGS  = -Wall -Wextra -Werror -std=c++98 

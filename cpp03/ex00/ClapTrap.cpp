@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:12:10 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/12 16:42:53 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/19 22:03:06 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,65 @@
 
 ClapTrap::ClapTrap()
     : name_("Default_Player"), hitPoints_(10), energyPoints_(10), attackDamage_(0) {
-    std::cout << "ClapTrap default constructor called" << std::endl;
+    std::cout << "ClapTrap default Constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name)
     : name_(name), hitPoints_(10), energyPoints_(10), attackDamage_(0) {
-    std::cout << "ClapTrap constructor called" << std::endl;
+    std::cout << "ClapTrap Constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(const ClapTrap &clapTrap) { *this = clapTrap; }
-
-ClapTrap::~ClapTrap() { std::cout << "ClapTrap destructor called" << std::endl; }
-
-//========================== Operator Overloading =================================
+ClapTrap::ClapTrap(const ClapTrap &clapTrap) {
+    *this = clapTrap;
+    std::cout << "ClapTrap CopyConstructor called" << std::endl;
+}
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &clapTrap) {
-    this->name_ = clapTrap.name_;
-    this->hitPoints_ = clapTrap.hitPoints_;
-    this->energyPoints_ = clapTrap.energyPoints_;
-    this->attackDamage_ = clapTrap.attackDamage_;
+    name_ = clapTrap.name_;
+    hitPoints_ = clapTrap.hitPoints_;
+    energyPoints_ = clapTrap.energyPoints_;
+    attackDamage_ = clapTrap.attackDamage_;
+    std::cout << "ClapTrap CopyAssigenmentConstructor called" << std::endl;
     return (*this);
 }
+
+ClapTrap::~ClapTrap() { std::cout << "ClapTrap Destructor called" << std::endl; }
 
 //========================== Memberfunctions ==========================
 
 void ClapTrap::attack(const std::string &target) {
-    std::cout << "ClapTrap " << this->name_ << " attacks " << target << ", causing "
-              << this->attackDamage_ << " points of damage!" << std::endl;
+    if (hitPoints_ == 0) {
+        std::cout << "ClapTrap " << name_ << " is dead!" << std::endl;
+        return;
+    }
+    if (energyPoints_ == 0) {
+        std::cout << "ClapTrap " << name_ << " has no energy!" << std::endl;
+        return;
+    }
+    energyPoints_--;
+    std::cout << "ClapTrap " << name_ << " attacks " << target << ", causing "
+              << attackDamage_ << " points of damage!" << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
-    if (amount > 0) {
-        std::cout << "ClapTrap " << this->name_ << " takes " << amount << " damage!"
-                  << std::endl;
+    if (hitPoints_ == 0) {
+        std::cout << "ClapTrap " << name_ << " is dead!" << std::endl;
+        return;
     }
+    hitPoints_ = amount > hitPoints_ ? 0 : hitPoints_ - amount;
+    std::cout << "ClapTrap " << name_ << " takes " << amount << " damage!" << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
-    // if (this->hitPoints_ + amount > 10) amount = 10 - this->hitPoints_;
-    std::cout << "ClapTrap " << this->name_ << " has recovered " << amount
-              << " points of HP!" << std::endl;
+    if (hitPoints_ == 0) {
+        std::cout << "ClapTrap " << name_ << " is dead!" << std::endl;
+        return;
+    }
+    if (energyPoints_ == 0) {
+        std::cout << "ClapTrap " << name_ << " has no energy!" << std::endl;
+        return;
+    }
+    energyPoints_--;
+    std::cout << "ClapTrap " << name_ << " has recovered " << amount << " points of HP!"
+              << std::endl;
 }
