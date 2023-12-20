@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:12:17 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/13 15:21:19 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/20 16:08:02 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 int main(void) {
     const int size = 2;
     Animal** animals = new Animal*[size];
+    // Animal animal;
 
     for (int i = 0; i < size / 2; ++i) {
         animals[i] = new Dog();

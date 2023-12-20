@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:12:17 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/13 13:02:21 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/20 16:58:56 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,21 @@ int main(void) {
     const int size = 2;
     Animal** animals = new Animal*[size];
 
+    // Dog test1;
+    // {
+    //     Dog test2 = test1;
+    //     std::cout << "Address of test1's brain: " << &test1 << std::endl;
+    //     std::cout << "Address of test2's brain: " << &test2 << std::endl;
+    // }
+
     for (int i = 0; i < size / 2; ++i) {
         animals[i] = new Dog();
+        animals[i]->makeSound();
     }
 
     for (int i = size / 2; i < size; ++i) {
         animals[i] = new Cat();
+        animals[i]->makeSound();
     }
 
     for (int i = 0; i < size; ++i) {

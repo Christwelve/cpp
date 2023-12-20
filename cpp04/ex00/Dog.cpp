@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:00:43 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/14 08:53:56 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/20 12:08:07 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Dog::Dog(void) : Animal("Dog") {
     std::cout << "Dog default constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog &dog) {
+Dog::Dog(const Dog &dog) : Animal(dog) {
     std::cout << "Dog copy constructor called" << std::endl;
     *this = dog;
 }

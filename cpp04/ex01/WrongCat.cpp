@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:24:02 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/14 08:53:56 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/20 12:08:53 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ WrongCat::WrongCat(void) : WrongAnimal("WrongCat") {
     std::cout << "WrongCat default constructor called" << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat &cat) {
+WrongCat::WrongCat(const WrongCat &cat) : WrongAnimal(cat) {
     std::cout << "WrongCat copy constructor called" << std::endl;
     *this = cat;
 }

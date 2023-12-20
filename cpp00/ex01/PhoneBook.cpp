@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:42:47 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/17 20:36:36 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/17 19:45:59 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,13 @@ void PhoneBook::displayContacts() {
     std::string input;
     input = get_input("Enter an index: ");
     size_t i;
-
-    std::istringstream iss(input);
-    if (!(iss >> i)) {
+    try {
+        std::istringstream iss(input);
+        iss >> i;
+        if (!iss.good() || !iss.eof()) {
+            throw std::exception();
+        }
+    } catch (const std::exception& e) {
         std::cout << "Invalid Input" << std::endl;
         return;
     }

@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:00:43 by cmeng             #+#    #+#             */
-/*   Updated: 2023/12/14 08:53:55 by cmeng            ###   ########.fr       */
+/*   Updated: 2023/12/20 15:41:41 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ Dog::Dog(void) : Animal("Dog"), brain_(new Brain()) {
 
 Dog::Dog(const Dog &dog) : Animal(dog), brain_(new Brain(*dog.brain_)) {
     std::cout << "Dog copy constructor called" << std::endl;
-    *this = dog;
 }
 
 Dog &Dog::operator=(const Dog &dog) {
