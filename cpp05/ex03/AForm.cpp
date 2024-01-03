@@ -64,7 +64,7 @@ int AForm::getSignGrade(void) const { return (signGrade_); }
 int AForm::getExecuteGrade(void) const { return (execGrade_); }
 
 void AForm::beSigned(const Bureaucrat &bureaucrat) {
-    if (isSigned_) throw std::logic_error("AForm is already signed");
+    if (isSigned_) throw std::logic_error("it's already signed");
     if (bureaucrat.getGrade() > signGrade_) throw GradeTooLowException();
     isSigned_ = true;
 }
