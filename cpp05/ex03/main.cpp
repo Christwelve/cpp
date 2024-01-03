@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 14:52:45 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/02 21:15:04 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/03 15:53:24 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 #include "Intern.hpp"
 
 int main(void) {
-    srand(time(NULL));
-
-    const std::string formNames[] = {"robotomy request", "presidential pardon",
-                                     "shrubbery creation", "invalid form"};
+        const std::string formNames[] = {"robotomy request", "presidential pardon",
+                                     "shrubbery creation", "blaaa"};
 
     Intern intern;
     for (int i = 0; i < 4; i++) {

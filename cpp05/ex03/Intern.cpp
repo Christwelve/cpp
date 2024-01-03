@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:11:17 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/02 21:57:23 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/03 15:50:33 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ AForm *Intern::makeForm(const std::string &name, const std::string &target) {
             }
         }
     }
-    std::cerr << "Intern cannot create " << name << std::endl;
+    std::cerr << "Invalid form: Intern cannot create " << name << std::endl;
     return (NULL);
 }
