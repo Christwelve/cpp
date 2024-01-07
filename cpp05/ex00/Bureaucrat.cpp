@@ -13,8 +13,7 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade) : name_(name) {
         grade_ = grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &bureaucrat)
-    : name_(bureaucrat.name_), grade_(bureaucrat.grade_) {}
+Bureaucrat::Bureaucrat(const Bureaucrat &bureaucrat) : name_(bureaucrat.name_), grade_(bureaucrat.grade_) {}
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &bureaucrat) {
     if (this != &bureaucrat) {
@@ -27,13 +26,9 @@ Bureaucrat::~Bureaucrat() {}
 
 // ---------------- Exceptions ---------------- //
 
-const char *Bureaucrat::GradeTooHighException::what() const throw() {
-    return ("Grade is too high");
-}
+const char *Bureaucrat::GradeTooHighException::what() const throw() { return ("Grade is too high"); }
 
-const char *Bureaucrat::GradeTooLowException::what() const throw() {
-    return ("Grade is too low");
-}
+const char *Bureaucrat::GradeTooLowException::what() const throw() { return ("Grade is too low"); }
 
 // ---------------- Member functions ---------------- //
 
