@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:07:20 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/07 20:54:43 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/09 17:05:44 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 #include <cctype>
 #include <cfloat>
-#include <climits>
+#include <iomanip>
 #include <iostream>
+#include <limits>
 #include <sstream>
 #include <stdexcept>
 #include <string>
@@ -37,8 +38,8 @@ type ScalarConverter::parsing(const std::string &str) {
     int ch = 0;
     int num = 0;
 
-    if (str == "nan" || str == "inf" || str == "-inf") return (DOUBLE);
-    if (str == "nanf" || str == "inff" || str == "-inff") return (FLOAT);
+    if (str == "nan" || str == "inf" || str == "-inf" || str == "+inf") return (DOUBLE);
+    if (str == "nanf" || str == "inff" || str == "-inff" || str == "+inff") return (FLOAT);
 
     for (int i = 0; i < static_cast<int>(str.length()); i++) {
         if (str[i] == '.')
@@ -52,151 +53,93 @@ type ScalarConverter::parsing(const std::string &str) {
         else if (isdigit(str[i]))
             num++;
     }
+    if (str.size() == 1 && isprint(str[0])) return (CHAR);
     if (!p && !fl && !ch && num && sign <= 1) return (INT);
     if (p == 1 && !fl && !ch && num && sign <= 1) return (DOUBLE);
     if (p == 1 && fl && !ch && num && sign <= 1) return (FLOAT);
-    if (!p && !fl && ch && ch == static_cast<int>(str.length()))
+    if (!p && !fl && ch && ch == static_cast<int>(str.size()))
         return (CHAR);
     else
         return (INVALID);
 }
 
-void ScalarConverter::stoc(std::istringstream &iss) {
-    char conv;
-    try {
-        iss >> conv;
-        if (conv < 32 || conv > 126) {
-            std::cout << "char: Non displayable" << std::endl;
-        } else {
-            std::cout << "char: '" << conv << "'" << std::endl;
-        }
-        std::cout << "int: " << static_cast<int>(conv) << std::endl;
-        std::cout << "float: " << static_cast<float>(conv) << ".0f" << std::endl;
-        std::cout << "double: " << static_cast<double>(conv) << ".0" << std::endl;
-    } catch (std::exception &e) {
-        std::cout << "char: impossible" << std::endl;
-        std::cout << "int: impossible" << std::endl;
-        std::cout << "float: impossible" << std::endl;
-        std::cout << "double: impossible" << std::endl;
-    }
-}
-
-void ScalarConverter::stoi(std::istringstream &iss) {
-    int convInt = 0;
-    double convDouble = 0;
-    try {
-        iss >> convDouble;
-        if (convDouble < INT_MIN || convDouble > INT_MAX) {
-            throw std::exception();
-        }
-        convInt = static_cast<int>(convDouble);
-        if (convInt < 32 || convInt > 126) {
-            std::cout << "char: Non displayable" << std::endl;
-        } else {
-            std::cout << "char: '" << static_cast<char>(convInt) << "'" << std::endl;
-        }
-        std::cout << "int: " << convInt << std::endl;
-        std::cout << "float: " << static_cast<float>(convInt) << ".0f" << std::endl;
-        std::cout << "double: " << static_cast<double>(convInt) << ".0" << std::endl;
-    } catch (std::exception &e) {
-        std::cout << "char: impossible" << std::endl;
-        std::cout << "int: impossible" << std::endl;
-        std::cout << "float: impossible" << std::endl;
-        std::cout << "double: impossible" << std::endl;
-    }
-}
-
-void ScalarConverter::stof(std::istringstream &iss) {
-    float convFloat = 0.0f;
-    double convDouble = 0.0;
-    try {
-        iss >> convDouble;
-        if (convDouble != convDouble) {
-            std::cout << "char: impossible" << std::endl;
-            std::cout << "int: impossible" << std::endl;
-            std::cout << "float: nanf" << std::endl;
-            std::cout << "double: nan" << std::endl;
-        } else if (convDouble == std::numeric_limits<double>::infinity()) {
-            std::cout << "char: impossible" << std::endl;
-            std::cout << "int: impossible" << std::endl;
-            std::cout << "float: inff" << std::endl;
-            std::cout << "double: inf" << std::endl;
-        } else if (convDouble == -std::numeric_limits<double>::infinity()) {
-            std::cout << "char: impossible" << std::endl;
-            std::cout << "int: impossible" << std::endl;
-            std::cout << "float: -inff" << std::endl;
-            std::cout << "double: -inf" << std::endl;
-        } else {
-            if (convDouble < FLT_MIN || convDouble > FLT_MAX) {
-                throw std::exception();
-            }
-            convFloat = static_cast<float>(convDouble);
-            if (convFloat < 32 || convFloat > 126) {
-                std::cout << "char: Non displayable" << std::endl;
-            } else {
-                std::cout << "char: '" << static_cast<char>(convFloat) << "'" << std::endl;
-            }
-            std::cout << "int: " << static_cast<int>(convFloat) << std::endl;
-            std::cout << "float: " << convFloat << "f" << std::endl;
-            std::cout << "double: " << convDouble << std::endl;
-        }
-    } catch (std::exception &e) {
-        std::cout << "char: impossible" << std::endl;
-        std::cout << "int: impossible" << std::endl;
-        std::cout << "float: impossible" << std::endl;
-        std::cout << "double: impossible" << std::endl;
-    }
-}
-
-void ScalarConverter::stod(std::istringstream &iss) {
-    double conv = 0.0;
-    bool fail = false;
-
-    if (!(iss >> conv)) fail = true;
-
-    if (fail) {
-        std::cout << "char: impossible" << std::endl;
-        std::cout << "int: impossible" << std::endl;
-        std::cout << "float: impossible" << std::endl;
-        std::cout << "double: impossible" << std::endl;
-    } else {
-        if (static_cast<int>(conv) < 32 || static_cast<int>(conv) > 126) {
-            std::cout << "char: Non displayable" << std::endl;
-        } else {
-            std::cout << "char: " << static_cast<char>(conv) << "'" << std::endl;
-        }
-        std::cout << "int: " << static_cast<int>(conv) << std::endl;
-        std::cout << "float: " << static_cast<float>(conv) << ".0f" << std::endl;
-        std::cout << "double: " << conv << ".0" << std::endl;
-    }
-}
-
 void ScalarConverter::convert(const std::string &str) {
-    type source;
-
-    source = parsing(str);
+    type source = parsing(str);
     if (source == INVALID) {
         std::cerr << "Invalid Input" << std::endl;
         return;
     }
+    std::string strFloat = str;
+    if (source == FLOAT) {
+        strFloat.erase(strFloat.size() - 1, 1);
+    }
 
-    std::cout << source << std::endl;
+    // handle edge cases inf, -inf, nan nanf, inff, -inff
+    if (str == "nan" || str == "inf" || str == "-inf" || str == "nanf" || str == "inff" || str == "-inff" || str == "+inf" || str == "+inff") {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        if (str == "nanf" || str == "inff" || str == "-inff" || str == "+inff") {
+            std::cout << "float: " << str << std::endl;
+            std::cout << "double: " << str.substr(0, str.size() - 1) << std::endl;
+        } else {
+            std::cout << "float: " << str << "f" << std::endl;
+            std::cout << "double: " << str << std::endl;
+        }
+        return;
+    }
 
-    std::istringstream iss(str);
-    switch (source) {
-        case CHAR:
-            stoc(iss);
-            break;
-        case INT:
-            stoi(iss);
-            break;
-        case FLOAT:
-            stof(iss);
-            break;
-        case DOUBLE:
-            stod(iss);
-            break;
-        case INVALID:
-            break;
+    // handle single character
+    if (str.size() == 1) {
+        char c = str[0];
+        std::cout << "char: '" << c << "'" << std::endl;
+        std::cout << "int: " << static_cast<int>(c) << std::endl;
+        std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
+        std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
+        return;
+    }
+
+    std::istringstream iss;
+    source == FLOAT ? iss.str(strFloat) : iss.str(str);
+    double conv;
+    if (!(iss >> conv)) {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: impossible" << std::endl;
+        std::cout << "double: impossible" << std::endl;
+        return;
+    }
+
+    // handle char
+    if (static_cast<int>(conv) < 32 || static_cast<int>(conv) > 126) {
+        std::cout << "char: Not displayable" << std::endl;
+    } else {
+        std::cout << "char: '" << static_cast<char>(conv) << "'" << std::endl;
+    }
+
+    // handle int
+    if (conv < std::numeric_limits<int>::min() || conv > std::numeric_limits<int>::max()) {
+        std::cout << "int: impossible" << std::endl;
+    } else {
+        std::cout << "int: " << static_cast<int>(conv) << std::endl;
+    }
+
+    // handle float
+    float dec = static_cast<float>(conv);
+
+    if (conv < -std::numeric_limits<float>::max() || conv > std::numeric_limits<float>::max()) {
+        std::cout << "float: impossible" << std::endl;
+    } else {
+        if (dec != static_cast<int>(dec)) {
+            std::cout << "float: " << std::setprecision(10) << static_cast<float>(conv) << "f" << std::endl;
+        } else {
+            std::cout << "float: " << std::setprecision(10) << static_cast<float>(conv) << ".0f" << std::endl;
+        }
+    }
+
+    // handle double
+    if (dec != static_cast<int>(dec)) {
+        std::cout << "double: " << std::setprecision(10) << conv << std::endl;
+    } else {
+        std::cout << "double: " << std::setprecision(10) << conv << ".0" << std::endl;
     }
 }
