@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:07:20 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/10 14:30:49 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/10 20:43:44 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,11 +116,7 @@ void ScalarConverter::toInt(std::istringstream &iss) {
     }
 
     // int
-    if (i < std::numeric_limits<int>::min() || i > std::numeric_limits<int>::max()) {
-        std::cout << "int: impossible" << i << std::endl;
-    } else {
-        std::cout << "int: " << i << std::endl;
-    }
+    std::cout << "int: " << i << std::endl;
 
     // float
     std::cout << "float: " << std::setprecision(5) << static_cast<float>(i) << ".0f" << std::endl;
@@ -154,21 +150,17 @@ void ScalarConverter::toFloat(std::istringstream &iss) {
 
     // int
     if (f < std::numeric_limits<int>::min() || f > std::numeric_limits<int>::max()) {
-        std::cout << "int: impossible" << static_cast<int>(f) << std::endl;
+        std::cout << "int: impossible" << std::endl;
     } else {
         std::cout << "int: " << static_cast<int>(f) << std::endl;
     }
 
     int nDec = static_cast<int>(f);
     // float
-    if (f < std::numeric_limits<float>::min() || f > std::numeric_limits<float>::max()) {
-        std::cout << "float: impossible" << std::endl;
+    if (f != nDec) {
+        std::cout << "float: " << std::setprecision(5) << f << "f" << std::endl;
     } else {
-        if (f != nDec) {
-            std::cout << "float: " << std::setprecision(5) << f << "f" << std::endl;
-        } else {
-            std::cout << "float: " << std::setprecision(5) << f << ".0f" << std::endl;
-        }
+        std::cout << "float: " << std::setprecision(5) << f << ".0f" << std::endl;
     }
 
     // double
@@ -179,7 +171,55 @@ void ScalarConverter::toFloat(std::istringstream &iss) {
     }
 }
 
-void ScalarConverter::toDouble(std::istringstream &iss) { (void)iss; }
+void ScalarConverter::toDouble(std::istringstream &iss) {
+    bool overflow = false;
+    double d;
+
+    if (!(iss >> d)) overflow = true;
+
+    if (overflow) {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: impossible" << std::endl;
+        std::cout << "double: impossible" << std::endl;
+        return;
+    }
+
+    // char
+    if (d < std::numeric_limits<char>::min() || d > std::numeric_limits<char>::max()) {
+        std::cout << "char: impossible" << std::endl;
+    } else if (d < 32 || d > 126) {
+        std::cout << "char: Not displayable" << std::endl;
+    } else {
+        std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;
+    }
+
+    // int
+    if (d < std::numeric_limits<int>::min() || d > std::numeric_limits<int>::max()) {
+        std::cout << "int: impossible" << std::endl;
+    } else {
+        std::cout << "int: " << static_cast<int>(d) << std::endl;
+    }
+
+    int nDec = static_cast<int>(d);
+    // float
+    if (d < std::numeric_limits<float>::lowest() || d > std::numeric_limits<float>::max()) {
+        std::cout << "float: impossible" << std::endl;
+    } else {
+        if (d != nDec) {
+            std::cout << "float: " << std::setprecision(5) << d << "f" << std::endl;
+        } else {
+            std::cout << "float: " << std::setprecision(5) << d << ".0f" << std::endl;
+        }
+    }
+
+    // double
+    if (d != nDec) {
+        std::cout << "double: " << std::setprecision(5) << static_cast<double>(d) << std::endl;
+    } else {
+        std::cout << "double: " << std::setprecision(5) << static_cast<double>(d) << ".0" << std::endl;
+    }
+}
 
 void ScalarConverter::convert(const std::string &str) {
     type source = parsing(str);
@@ -197,7 +237,7 @@ void ScalarConverter::convert(const std::string &str) {
         iss.str(str);
     }
 
-    // std::cout << source << std::endl;
+    std::cout << source << std::endl;
 
     switch (source) {
         case CHAR:
