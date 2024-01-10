@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:31:28 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/09 16:49:39 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/10 12:46:20 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <string>
 
-enum type { CHAR, INT, FLOAT, DOUBLE, INVALID };
+enum type { CHAR, INT, FLOAT, DOUBLE, PSEUDO, INVALID };
 
 class ScalarConverter {
    public:
@@ -28,6 +28,11 @@ class ScalarConverter {
     ScalarConverter &operator=(const ScalarConverter &scalarConverter);  // Assignation Operator
 
     static type parsing(const std::string &str);
+    static void pseudo(const std::string &str);
+    static void toChar(std::istringstream &iss);
+    static void toInt(std::istringstream &iss);
+    static void toFloat(std::istringstream &iss);
+    static void toDouble(std::istringstream &iss);
 };
 
 #endif
