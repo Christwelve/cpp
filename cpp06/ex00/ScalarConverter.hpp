@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:31:28 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/10 12:46:20 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/11 05:35:57 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ class ScalarConverter {
     static void toInt(std::istringstream &iss);
     static void toFloat(std::istringstream &iss);
     static void toDouble(std::istringstream &iss);
+    static std::string decFloat(float f);
+    static std::string decDouble(double d);
 };
 
 #endif
