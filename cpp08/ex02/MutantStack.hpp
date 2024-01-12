@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
+/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:42:25 by christianme       #+#    #+#             */
-/*   Updated: 2024/01/12 15:43:50 by christianme      ###   ########.fr       */
+/*   Updated: 2024/01/12 20:50:27 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 template <typename T>
 class MutantStack : public std::stack<T> {
-public:
+   public:
     MutantStack();
     MutantStack(const MutantStack<T>& other);
     ~MutantStack();

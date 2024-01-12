@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
+/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 13:59:27 by christianme       #+#    #+#             */
-/*   Updated: 2024/01/12 14:15:38 by christianme      ###   ########.fr       */
+/*   Updated: 2024/01/12 20:51:25 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EASYFIND_HPP
-# define EASYFIND_HPP
+#define EASYFIND_HPP
 
 #include <algorithm>
 #include <iterator>
