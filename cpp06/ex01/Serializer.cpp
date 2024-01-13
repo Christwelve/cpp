@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:13:06 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/11 07:10:58 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/13 16:14:20 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ Serializer &Serializer::operator=(const Serializer &serializer) {
 
 Serializer::~Serializer(void) { return; }
 
-unsigned long Serializer::serialize(Data *ptr) { return (reinterpret_cast<unsigned long>(ptr)); }
+uintptr_t Serializer::serialize(Data *ptr) { return (reinterpret_cast<uintptr_t>(ptr)); }
 
-Data *Serializer::deserialize(unsigned long raw) { return (reinterpret_cast<Data *>(raw)); }
+Data *Serializer::deserialize(uintptr_t raw) { return (reinterpret_cast<Data *>(raw)); }

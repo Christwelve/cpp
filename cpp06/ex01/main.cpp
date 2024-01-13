@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:15:41 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/11 07:09:17 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/13 16:14:35 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main() {
     Data data = {42, "Heilbronn"};
     Data* ptr = &data;
 
-    unsigned long raw = Serializer::serialize(ptr);
+    uintptr_t raw = Serializer::serialize(ptr);
     Data* deserialized = Serializer::deserialize(raw);
 
     if (ptr == deserialized) {
