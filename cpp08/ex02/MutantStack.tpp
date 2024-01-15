@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:42:21 by christianme       #+#    #+#             */
-/*   Updated: 2024/01/12 20:50:27 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/15 14:57:35 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,6 @@ typename MutantStack<T>::iterator MutantStack<T>::begin() {
 }
 
 template <typename T>
-typename MutantStack<T>::const_iterator MutantStack<T>::begin() const {
-    return std::stack<T>::c.begin();
-}
-
-template <typename T>
 typename MutantStack<T>::iterator MutantStack<T>::end() {
-    return std::stack<T>::c.end();
-}
-
-template <typename T>
-typename MutantStack<T>::const_iterator MutantStack<T>::end() const {
     return std::stack<T>::c.end();
 }

@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:21:19 by christianme       #+#    #+#             */
-/*   Updated: 2024/01/12 21:15:14 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/15 20:38:54 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int Span::shortestSpan() {
         throw std::runtime_error("Not enough numbers in span");
     }
     std::sort(numbers.begin(), numbers.end());
-    int shortest = numbers[1] - numbers[0];
-    for (unsigned int i = 1; i < numbers.size() - 1; ++i) {
+    int shortest;
+    for (unsigned int i = 0; i < numbers.size() - 1; ++i) {
         shortest = std::min(shortest, numbers[i + 1] - numbers[i]);
     }
     return shortest;
@@ -58,10 +58,10 @@ int Span::longestSpan() {
     return max - min;
 }
 
-template <typename IT>
-void Span::addNumber(IT begin, IT end) {
-    while (begin != end) {
-        addNumber(*begin);
-        ++begin;
-    }
-}
+// template <typename IT>
+// void Span::addNumber(IT begin, IT end) {
+//     while (begin != end) {
+//         addNumber(*begin);
+//         ++begin;
+//     }
+// }

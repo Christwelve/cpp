@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:20:55 by christianme       #+#    #+#             */
-/*   Updated: 2024/01/12 20:51:25 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/15 20:34:05 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,19 @@ class Span {
     int shortestSpan();
     int longestSpan();
     template <typename IT>
-    void addNumber(IT begin, IT end);
+    void addNumber(IT begin, IT end)
+    {
+        while (begin != end) {
+        addNumber(*begin);
+        ++begin;
+        }
+        // numbers.insert(numbers.end(), begin, end);
+    }
 
    private:
     unsigned int N;
     std::vector<int> numbers;
 };
+
 
 #endif

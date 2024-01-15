@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:24:41 by christianme       #+#    #+#             */
-/*   Updated: 2024/01/12 21:18:22 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/15 21:47:41 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,25 @@
 
 int main() {
     try {
-        Span sp = Span(5);
-        sp.addNumber(6);
-        sp.addNumber(3);
-        sp.addNumber(17);
-        sp.addNumber(9);
-        sp.addNumber(11);
-        // sp.addNumber(12);
-        std::cout << sp.shortestSpan() << std::endl;
-        std::cout << sp.longestSpan() << std::endl;
+        srand(time(0));
+        Span sp = Span(1000);
+        for (int i = 0; i < 10; ++i) {
+            int num = rand() % 1000 + 1;
+            sp.addNumber(num);
+            std::cout << num << std::endl;
+        }
+        std::cout << "Shortest span:    " << sp.shortestSpan() << std::endl;
+        std::cout << "Longest span:     " << sp.longestSpan() << std::endl;
+
+        Span test = Span(5);
+        int nums[] = {1, 2, 3, 4, 5};
+        int *end = nums + sizeof(nums) / sizeof(int);
+        std::vector<int> vec(nums, end);
+        test.addNumber(vec.begin(), vec.end());
+
+        std::cout << "Shortest span:    " << test.shortestSpan() << std::endl;
+        std::cout << "Longest span:     " << test.longestSpan() << std::endl;
+
     } catch (std::runtime_error &e) {
         std::cerr << "Caught exception: " << e.what() << std::endl;
         return (0);
