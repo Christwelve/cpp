@@ -6,7 +6,7 @@
 /*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:10:18 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/18 13:53:40 by christianme      ###   ########.fr       */
+/*   Updated: 2024/01/18 13:58:16 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void BitcoinExchange::getDB(void) {
 
 
 void BitcoinExchange::getInput(const std::string &filename) {
-    std::fstream file(filename);
+    std::fstream file(filename.c_str());
     if (!file.is_open()) {
         std::cout << "Error: Cannot open input file" << std::endl;
         return;
