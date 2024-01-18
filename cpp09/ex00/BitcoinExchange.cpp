@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
+/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:10:18 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/17 21:24:13 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/18 13:53:40 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <iomanip>
 
 BitcoinExchange::BitcoinExchange(void) { return; }
 
@@ -105,16 +106,10 @@ void BitcoinExchange::getDB(void) {
 
             db_[date] = price;
         }
-
-        // std::cout << "date: " << date.year << date.month << date.day std::endl;
-        // std::cout << "price: " << price << std::endl;
     }
-    // for (std::map<Date, float>::const_iterator it = db_.begin(); it != db_.end(); ++it) {
-    //     const Date &date = it->first;
-    //     float price = it->second;
-    //     std::cout << "Date: " << date.year << "-" << date.month << "-" << date.day << ", Price: " << price << std::endl;
-    // }
 }
+
+
 
 void BitcoinExchange::getInput(const std::string &filename) {
     std::fstream file(filename);
@@ -150,15 +145,20 @@ void BitcoinExchange::getInput(const std::string &filename) {
             date.day = day;
 
             if (!invalidDate(date, i) && !invalidAmount(amount, i)) {
-                // std::cout << "Source:   " << line << std::endl;
-                // std::cout << "Date:     " << date << std::endl;
-                // std::cout << "Value:    " << amount << std::endl;
-                // std::cout << "-------------------------" << std::endl;
-                // Calculate price() {
-                // open .csv -> db.map()
-                // use string stream to get dbDate and dbPrice and compare it to date of db.map()
-                // take date and
-                std::cout << "calcutate price" << std::endl;
+                std::map<Date, float>::const_iterator it = db_.find(date);  
+                if (it != db_.end()) {
+                    std::cout << date.year << dash << std::setw(2) << std::setfill('0') << date.month << dash << std::setw(2) << std::setfill('0') << date.day << 
+                    " => " << amount << " = " << GREEN << std::fixed << std::setprecision(2) << amount * it->second << "$" CLEAR << std::endl;
+                } else {
+                    std::map<Date, float>::const_reverse_iterator rit;
+                    for (rit = db_.rbegin(); rit != db_.rend(); ++rit) {
+                        if (rit->first < date) {
+                        std::cout << rit->first.year << dash << std::setw(2) << std::setfill('0') << rit->first.month << dash << std::setw(2) << std::setfill('0') << rit->first.day << 
+                        " => " << amount << " = " << GREEN << std::fixed << std::setprecision(2) << amount * rit->second << "$" CLEAR << std::endl;
+                        break;
+                        }
+                    }
+                }
             }
         } else {
             std::cerr << "Error: Invalid format, missing '|' delimiter in line " << i << std::endl;
@@ -167,78 +167,3 @@ void BitcoinExchange::getInput(const std::string &filename) {
         ++i;
     }
 }
-
-// std::cout << "Source:   " << line << std::endl;
-// std::cout << "Date:     " << date << std::endl;
-// std::cout << "Value:    " << value << std::endl;
-// std::cout << "-------------------------" << std::endl;
-
-// std::stringstream ss(line);
-// std::string date;
-// float value;
-// std::getline(ss, date, '|');
-
-// if (!(ss >> value)) {
-//     std::cerr << "Error: Invalid value!" << std::endl;
-//     return;
-// }
-
-// // std::string date;
-// // date = line.substr(0, pos);
-// // checkDate(date);
-
-// // std::stringstream ss(line);
-// // float value;
-// // if (!(ss >> value)) {
-// //     std::cerr << "Error: Invalid value!" << std::endl;
-// //     return;
-// // }
-// std::cout << "Source:   " << line << std::endl;
-// std::cout << std::endl;
-// std::cout << "Date:     " << date << std::endl;
-// std::cout << "Value:    " << value << std::endl;
-// std::cout << "-------------------------" << std::endl;
-// }
-
-// void BitcoinExchange::parseData(std::fstream &file) {
-//     std::string line;
-//     int i = 1;
-//     while (std::getline(file, line)) {
-//         // std::cout << "Source:   " << line << std::endl;
-//         // if (isdigit(line[0])) {
-
-//         // size_t pos = line.find("|");
-//         // if (pos == std::string::npos) {
-//         //     std::cerr << "Error: Invalid format, missing '|' delimiter in line " << i << std::endl;
-//         //     return;
-//         // }
-
-//         // std::stringstream ss(line);
-//         // std::string date;
-//         // float value;
-//         // std::getline(ss, date, '|');
-
-//         // if (!(ss >> value)) {
-//         //     std::cerr << "Error: Invalid value!" << std::endl;
-//         //     return;
-//         // }
-
-//         // // std::string date;
-//         // // date = line.substr(0, pos);
-//         // // checkDate(date);
-
-//         // // std::stringstream ss(line);
-//         // // float value;
-//         // // if (!(ss >> value)) {
-//         // //     std::cerr << "Error: Invalid value!" << std::endl;
-//         // //     return;
-//         // // }
-//         // std::cout << "Source:   " << line << std::endl;
-//         // std::cout << std::endl;
-//         // std::cout << "Date:     " << date << std::endl;
-//         // std::cout << "Value:    " << value << std::endl;
-//         // std::cout << "-------------------------" << std::endl;
-//         // }
-//         i++;
-//     }
-// }

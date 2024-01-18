@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
+/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:10:27 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/17 21:10:10 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/18 13:51:26 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 #define RED "\033[1;31m"
 #define CLEAR "\033[0m"
+#define GREEN "\033[1;32m"
 
 struct Date {
     int year;
@@ -48,7 +49,6 @@ class BitcoinExchange {
     void getDB(void);
     int invalidDate(Date &date, size_t &i);
     int invalidAmount(float &amount, size_t &i);
-    // void calculateValue(std::string &date, std::string &amount);
 };
 
 #endif
