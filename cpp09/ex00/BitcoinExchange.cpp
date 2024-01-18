@@ -6,7 +6,7 @@
 /*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:10:18 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/18 13:58:16 by christianme      ###   ########.fr       */
+/*   Updated: 2024/01/18 15:35:49 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ BitcoinExchange::~BitcoinExchange(void) { return; }
 // ---------------------------- Parsing -----------------------------------------//
 
 int BitcoinExchange::invalidDate(Date &date, size_t &i) {
-    bool leapYear = (date.year % 4 == 0);
+    bool leapYear = (date.year % 4 == 0 && date.year % 100 != 0) || (date.year % 400 == 0);
     int months[] = {31, leapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     if ((date.year < 2009 && date.month == 1 && date.day < 3) || date.year < 2009) {
@@ -107,6 +107,7 @@ void BitcoinExchange::getDB(void) {
             db_[date] = price;
         }
     }
+    csvFile.close();
 }
 
 
@@ -166,4 +167,5 @@ void BitcoinExchange::getInput(const std::string &filename) {
         }
         ++i;
     }
+    file.close();
 }

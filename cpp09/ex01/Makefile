@@ -3,22 +3,22 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+         #
+#    By: christianmeng <christianmeng@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 21:59:29 by cmeng             #+#    #+#              #
-#    Updated: 2024/01/16 13:16:44 by cmeng            ###   ########.fr        #
+#    Updated: 2024/01/18 14:00:05 by christianme      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME =  btc
+NAME =  RPN
 
 CC        = c++
 CPPFLAGS  = -Wall -Wextra -Werror -std=c++98 
 # CPPFLAGS  = -Wall -Wextra -Werror -std=c++98 -pedantic -g -fsanitize=address
 
-HEADERS = BitcoinExchange.hpp 
-SRCS    = main.cpp BitcoinExchange.cpp
+HEADERS = RPN.hpp 
+SRCS    = main.cpp RPN.cpp
 
 # ---------------------------------------------------------------------------- #
 
