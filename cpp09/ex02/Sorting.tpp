@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 13:21:33 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/20 15:26:19 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/20 16:41:43 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,8 +132,9 @@ void PmergeMe<T>::applyJacobNumbers(T& container) {
         container.insert(it, leftoverNum_);
     }
 
-    std::cout << "Container after applying Jacob Numbers " << std::endl;
+    std::cout << "After: ";
     for (size_t i = 0; i < container.size(); i++) {
-        std::cout << "container[" << i << "] = " << container[i] << std::endl;
+        std::cout << container[i] << " ";
     }
+    std::cout << std::endl;
 }

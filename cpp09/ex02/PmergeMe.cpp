@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:19:44 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/20 15:47:27 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/20 16:40:31 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,6 @@ int PmergeMe<T>::parseArguments(int argc, char **argv, T &container) {
             duplicates_++;
         }
     }
-
-    // Print container
-    std::cout << "After parsing: ";
-    for (size_t i = 0; i < container.size(); i++) {
-        std::cout << container[i] << " ";
-    }
-    std::cout << std::endl;
 
     return (0);
 }
