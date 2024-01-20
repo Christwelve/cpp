@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:19:44 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/20 15:28:56 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/20 15:47:27 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ template <typename T>
 int PmergeMe<T>::parseArguments(int argc, char **argv, T &container) {
     double check;
     char trash;
+    duplicates_ = 0;
     for (int i = 1; i < argc; i++) {
         std::stringstream ss(argv[i]);
         if (!(ss >> check) || check < 0 || check > UINT_MAX || ss >> trash) {
@@ -68,14 +69,16 @@ int PmergeMe<T>::parseArguments(int argc, char **argv, T &container) {
             container.push_back(num);
         } else {
             std::cout << YELLOW << "Info: " << CLEAR << "Duplicate in position " << i << " detected and ignored" << std::endl;
+            duplicates_++;
         }
     }
 
-    // // Print container
-    // std::cout << "After parsing" << std::endl;
-    // for (size_t i = 0; i < container.size(); i++) {
-    //     std::cout << "container[" << i << "] = " << container[i] << std::endl;
-    // }
+    // Print container
+    std::cout << "After parsing: ";
+    for (size_t i = 0; i < container.size(); i++) {
+        std::cout << container[i] << " ";
+    }
+    std::cout << std::endl;
 
     return (0);
 }

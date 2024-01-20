@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:16:19 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/20 15:31:15 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/20 15:44:58 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@
 
 #define RED "\033[0;31m"
 #define YELLOW "\033[0;33m"
+#define GREEN "\033[0;32m"
 #define CLEAR "\033[0m"
 
-#define MAX_AMOUNT_NBRS 5000
+#define MAX_AMOUNT_NBRS 3000
 
 template <typename T>
 class PmergeMe {
@@ -37,6 +38,7 @@ class PmergeMe {
     bool leftover_;
     size_t leftoverNum_;
     std::vector<size_t> buffer_;
+    size_t duplicates_;
 
     int parseArguments(int argc, char** argv, T& container);
 
