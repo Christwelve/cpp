@@ -6,12 +6,16 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:19:44 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/19 22:54:14 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/20 12:03:12 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
+#include <algorithm>
+#include <climits>
+#include <cmath>
+#include <cstddef>
 #include <iostream>
 #include <sstream>
 
@@ -70,45 +74,114 @@ int PmergeMe::parsing(int argc, char **argv) {
 
 // Ford-Johnson Algorithm
 
-void PmergeMe::sortPairsRecursively(size_t end) {
-    if (end <= 2) {
+void PmergeMe::sortPairsRecursively() {
+    if (vStack_.size() <= 2) {
         return;
     }
 
-    for (size_t i = 0; i < end - 2; i += 2) {
+    bool swapped = false;
+    for (size_t i = 0; i < vStack_.size() - 3; i += 2) {
         if (vStack_[i] > vStack_[i + 2]) {
             std::swap(vStack_[i], vStack_[i + 2]);
             std::swap(vStack_[i + 1], vStack_[i + 3]);
+            swapped = true;
         }
     }
-
-    // Recursive call
-    sortPairsRecursively(end - 2);
+    if (swapped) sortPairsRecursively();
 }
 
 void PmergeMe::n2Chunks(void) {
-    n_ = this->vStack_.size();
-    std::cout << "n_: " << n_ << std::endl;
-    size_t end = n_;
-    if (n_ % 2) end = n_ - 1;
-    std::cout << "end: " << end << std::endl;
-
     // n/2 larger num -> top
-    for (size_t i = 0; i < end; i += 2) {
+    for (size_t i = 0; i < vStack_.size(); i += 2) {
         if (vStack_[i] < vStack_[i + 1]) std::swap(vStack_[i], vStack_[i + 1]);
     }
     std::cout << "\nAfter single pair sort" << std::endl;
     for (size_t i = 0; i < this->vStack_.size(); i++) {
         std::cout << "vStack_[" << i << "] = " << this->vStack_[i] << std::endl;
     }
-    sortPairsRecursively(end);
+    sortPairsRecursively();
     std::cout << "\nAfter pair sort " << std::endl;
+    for (size_t i = 0; i < this->vStack_.size(); i++) {
+        std::cout << "vStack_[" << i << "] = " << this->vStack_[i] << std::endl;
+    }
+    devideChains();
+}
+
+void PmergeMe::devideChains() {
+    std::vector<size_t> buffer;
+    for (int i = vStack_.size() - 1; i >= 0; i -= 2) {
+        buffer.push_back(vStack_[i]);
+        vStack_.erase(vStack_.begin() + i);
+    }
+    std::reverse(buffer.begin(), buffer.end());
+
+    // Printing States of vStack and buffer
+    std::cout << "\nvStack after dividing " << std::endl;
+    for (size_t i = 0; i < this->vStack_.size(); i++) {
+        std::cout << "vStack_[" << i << "] = " << this->vStack_[i] << std::endl;
+    }
+    std::cout << "\nBuffer after dividing " << std::endl;
+    for (size_t i = 0; i < buffer.size(); i++) {
+        std::cout << "buffer_[" << i << "] = " << buffer[i] << std::endl;
+    }
+
+    // Generating Jacob Numbers
+    std::vector<size_t> jacobsIndices;
+    size_t jacob = 0;
+    for (size_t i = 2; jacob < MAX_AMOUNT_NBRS; ++i) {
+        jacob = static_cast<size_t>(std::floor((std::pow(2, i) - std::pow(-1, i)) / 3));
+        jacobsIndices.push_back(jacob - 1);
+    }
+    // std::cout << "\njacobsIndices " << std::endl;
+    // for (size_t i = 0; i < 15; i++) {
+    //     std::cout << "jacobsIndices[" << i << "] = " << jacobsIndices[i] << std::endl;
+    // }
+
+    // Apply Jacob Numbers
+    size_t nextIndex = 0;
+    for (size_t j = 0; j < jacobsIndices.size(); ++j) {
+        size_t index = jacobsIndices[j];
+        if (index >= buffer.size()) {
+            break;
+        }
+        std::vector<size_t>::iterator it = std::lower_bound(vStack_.begin(), vStack_.end(), buffer[index]);
+        vStack_.insert(it, buffer[index]);
+
+        for (size_t i = nextIndex; i < index; ++i) {
+            it = std::lower_bound(vStack_.begin(), vStack_.end(), buffer[i]);
+            vStack_.insert(it, buffer[i]);
+        }
+
+        nextIndex = index + 1;
+    }
+
+    for (size_t i = nextIndex; i < buffer.size(); ++i) {
+        std::vector<size_t>::iterator it = std::lower_bound(vStack_.begin(), vStack_.end(), buffer[i]);
+        vStack_.insert(it, buffer[i]);
+    }
+
+    if (leftover_) {
+        std::vector<size_t>::iterator it = std::lower_bound(vStack_.begin(), vStack_.end(), leftoverNum_);
+        vStack_.insert(it, leftoverNum_);
+    }
+
+    std::cout << "\nvStack after applying Jacob Numbers " << std::endl;
     for (size_t i = 0; i < this->vStack_.size(); i++) {
         std::cout << "vStack_[" << i << "] = " << this->vStack_[i] << std::endl;
     }
 }
 
 void PmergeMe::sorting(void) {
+    n_ = this->vStack_.size();
+    std::cout << "n_: " << n_ << std::endl;
+    size_t end = n_;
+    if (n_ % 2) {
+        end = n_ - 1;
+        leftover_ = true;
+        leftoverNum_ = vStack_[n_ - 1];
+        vStack_.erase(vStack_.begin() + end);
+    }
+
     n2Chunks();
     // devideChains();
     // applyJNs();
