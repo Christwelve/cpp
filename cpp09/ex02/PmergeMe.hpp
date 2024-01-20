@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:16:19 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/20 12:00:36 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/20 13:12:48 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,20 @@ class PmergeMe {
     ~PmergeMe();                                    // Destructor
 
    private:
-    std::vector<size_t> vStack_;
-    std::deque<size_t> qStack_;
+    std::vector<size_t> vec_;
+    std::deque<size_t> deque_;
     size_t n_;
     bool leftover_;
     size_t leftoverNum_;
-    int parsing(int argc, char **argv);
+    std::vector<size_t> buffer_;
 
+    int parseArguments(int argc, char **argv);
     void sorting(void);
+    void getLeftover(void);
     void n2Chunks(void);
     void sortPairsRecursively(void);
-
     void devideChains(void);
-    // void applyJNs(void);
-    // size_t binarySearch(void);
-    // void leftover(void);
+    void applyJacobNumbers(void);
 };
 
 #endif
