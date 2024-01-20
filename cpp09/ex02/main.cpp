@@ -6,24 +6,26 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:19:58 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/19 14:26:18 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/20 15:30:46 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <climits>
+#include <deque>
 #include <iostream>
+#include <vector>
 
 #include "PmergeMe.hpp"
 
 int main(int argc, char **argv) {
-    (void)argv;
-    (void)argc;
     if (argv == NULL || argc == 1) {
         std::cout << RED << "Error: " << CLEAR << "Please use: ./PmergeMe [uint1] [uint2] ..." << std::endl;
         return (1);
     }
+    std::vector<size_t> vec;
+    PmergeMe<std::vector<size_t> > first(argc, argv, vec);
 
-    PmergeMe test(argc, argv);
+    std::deque<size_t> deque;
+    PmergeMe<std::deque<size_t> > second(argc, argv, deque);
 
     std::cout << "End" << std::endl;
 }
