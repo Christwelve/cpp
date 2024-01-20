@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
+/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:19:44 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/20 16:40:31 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/20 17:36:16 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,13 @@ int PmergeMe<T>::parseArguments(int argc, char **argv, T &container) {
             std::cout << YELLOW << "Info: " << CLEAR << "Duplicate in position " << i << " detected and ignored" << std::endl;
             duplicates_++;
         }
+        
     }
+    std::cout << "Before:   ";
+    for (size_t i = 0; i < container.size(); i++) {
+        std::cout << container[i] << " ";
+    }
+    std::cout << std::endl;
 
     return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
+/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:16:19 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/20 16:38:58 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/20 17:42:03 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 #define CLEAR "\033[0m"
 
 #define MAX_AMOUNT_NBRS 3000
+
+// std::string printContainerType(const std::string& typeName);
 
 template <typename T>
 class PmergeMe {

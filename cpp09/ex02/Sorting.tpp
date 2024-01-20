@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Sorting.tpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
+/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 13:21:33 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/20 16:41:43 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/20 17:41:55 by christianme      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,38 @@
 #include <cstddef>
 #include <iostream>
 #include <sstream>
+#include <ctime>
+#include <typeinfo>
+#include <string>
 
 #include "PmergeMe.hpp"
 
 // Ford-Johnson Algorithm
 
+std::string printContainerType(const std::string& typeName) {
+    if (typeName.find("deque") != std::string::npos) {
+        return "deque";
+    } else if (typeName.find("vector") != std::string::npos) {
+        return "vector";
+    } else {
+        return "Unknown container type";
+    }
+}
+
+
 template <typename T>
 void PmergeMe<T>::sorting(T& container) {
+    clock_t start = clock();
+
     getLeftover(container);
     n2Chunks(container);
     devideChains(container);
     applyJacobNumbers(container);
+
+    clock_t end = clock();
+    double diff = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+    // std::cout << "Time to process a range of " << container.size() << " elements with " << printContainerType(typeid(container).name()) << " : " << diff << " s\n";
+    std::cout << "Time to process a range of " << container.size() << " elements with " << " : " << diff << " s\n";
 }
 
 template <typename T>
@@ -132,7 +153,7 @@ void PmergeMe<T>::applyJacobNumbers(T& container) {
         container.insert(it, leftoverNum_);
     }
 
-    std::cout << "After: ";
+    std::cout << "After:    ";
     for (size_t i = 0; i < container.size(); i++) {
         std::cout << container[i] << " ";
     }
