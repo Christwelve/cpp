@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:10:18 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/19 20:19:56 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/21 15:59:57 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,19 @@ int BitcoinExchange::invalidDate(Date &date, size_t &i) {
     int months[] = {31, leapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     if (date.month < 1 || date.month > 12) {
-        std::cout << RED << "Error: " << CLEAR << "Invalid date format: @line: " << i << std::endl;
+        std::cout << RED << "Error: " << CLEAR << "Invalid date format: Wrong month @line: " << i << std::endl;
         return (1);
     }
     if (date.day < 1 || date.day > months[date.month - 1]) {
-        std::cout << RED << "Error: " << CLEAR << "Invalid date format: @line: " << i << std::endl;
+        std::cout << RED << "Error: " << CLEAR << "Invalid date format: Wrong day  @line: " << i << std::endl;
         return (1);
     }
-    if ((date.year < 2009 && date.month == 1 && date.day < 3) || date.year < 2009) {
-        std::cout << RED << "Error: " << CLEAR << "Bitcoin Genesis Block was created on the 3rd of January 2009 😯" << std::endl;
+    if ((date.year == 2009 && date.month == 1 && date.day < 3) || date.year < 2009) {
+        std::cout << RED << "Error: " << CLEAR << "Bitcoin Genesis Block was created on the 3rd of January 2009 🤡" << std::endl;
         return (1);
     }
     if (date.year > 2024) {
-        std::cout << RED << "Error: " << CLEAR << "Invalid date format: @line: " << i << std::endl;
+        std::cout << RED << "Error: " << CLEAR << "Invalid date format: Wrong year @line: " << i << std::endl;
         return (1);
     }
     return (0);
