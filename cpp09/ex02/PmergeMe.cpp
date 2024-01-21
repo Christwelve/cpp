@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
+/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:19:44 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/20 17:36:16 by christianme      ###   ########.fr       */
+/*   Updated: 2024/01/21 15:49:57 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ PmergeMe<T> &PmergeMe<T>::operator=(const PmergeMe<T> &other) {
         leftover_ = other.leftover_;
         leftoverNum_ = other.leftoverNum_;
         buffer_ = other.buffer_;
+        duplicates_ = other.duplicates_;
     }
-    return *this;
+    return (*this);
 }
 
 template <typename T>
@@ -71,15 +72,17 @@ int PmergeMe<T>::parseArguments(int argc, char **argv, T &container) {
             std::cout << YELLOW << "Info: " << CLEAR << "Duplicate in position " << i << " detected and ignored" << std::endl;
             duplicates_++;
         }
-        
     }
-    std::cout << "Before:   ";
+    return (0);
+}
+
+template <typename T>
+void PmergeMe<T>::printContainer(const std::string &str, T &container) {
+    std::cout << str << "   :";
     for (size_t i = 0; i < container.size(); i++) {
         std::cout << container[i] << " ";
     }
     std::cout << std::endl;
-
-    return (0);
 }
 
 template class PmergeMe<std::vector<size_t> >;

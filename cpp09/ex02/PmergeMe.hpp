@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christianmeng <christianmeng@student.42    +#+  +:+       +#+        */
+/*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:16:19 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/20 17:42:03 by christianme      ###   ########.fr       */
+/*   Updated: 2024/01/21 15:46:12 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <cstddef>
 #include <deque>
+#include <string>
 #include <vector>
 
 #define RED "\033[0;31m"
@@ -24,12 +25,10 @@
 
 #define MAX_AMOUNT_NBRS 3000
 
-// std::string printContainerType(const std::string& typeName);
-
 template <typename T>
 class PmergeMe {
    public:
-    PmergeMe(void);                                 // Default Constructor
+    PmergeMe();                                     // Default Constructor
     PmergeMe(int argc, char** argv, T& container);  // Constructor
     PmergeMe(const PmergeMe& pmergeMe);             // Copy Constructor
     PmergeMe& operator=(const PmergeMe& pmergeMe);  // Assignation Operator
@@ -43,6 +42,7 @@ class PmergeMe {
     size_t duplicates_;
 
     int parseArguments(int argc, char** argv, T& container);
+    void printContainer(const std::string& str, T& container);
 
     void sorting(T& container);
     void getLeftover(T& container);
@@ -54,6 +54,21 @@ class PmergeMe {
 
 extern template class PmergeMe<std::vector<size_t> >;
 extern template class PmergeMe<std::deque<size_t> >;
+
+template <typename T>
+struct ContainerType {
+    static std::string name() { return "unknown"; }
+};
+
+template <>
+struct ContainerType<std::vector<size_t> > {
+    static std::string name() { return "vector"; }
+};
+
+template <>
+struct ContainerType<std::deque<size_t> > {
+    static std::string name() { return "deque"; }
+};
 
 #include "Sorting.tpp"
 

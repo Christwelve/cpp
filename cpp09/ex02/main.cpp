@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:19:58 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/20 16:38:04 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/21 15:50:44 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <ctime>
 #include <deque>
 #include <iostream>
+#include <list>
 #include <vector>
 
 #include "PmergeMe.hpp"
@@ -38,5 +39,5 @@ int main(int argc, char **argv) {
     PmergeMe<std::vector<size_t> > first(argc, argv, vec);
     PmergeMe<std::deque<size_t> > second(argc, argv, deque);
 
-    std::cout << "End" << std::endl;
+    return (0);
 }
