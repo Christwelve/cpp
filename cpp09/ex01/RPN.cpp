@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:33:32 by christianme       #+#    #+#             */
-/*   Updated: 2024/01/18 19:58:12 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/21 17:20:09 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,16 @@ RPN::RPN(const std::string &str) {
 }
 
 RPN::RPN(const RPN &other) {
-    *this = other;
+    if (this != &other) {
+        *this = other;
+    }
     return;
 }
 
 RPN &RPN::operator=(const RPN &other) {
-    this->stack_ = other.stack_;
+    if (this != &other) {
+        this->stack_ = other.stack_;
+    }
     return *this;
 }
 
@@ -52,9 +56,9 @@ bool RPN::invalidString(const std::string &str) {
     for (size_t i = 0; i < str.length(); i += 2) {
         if (isdigit(str[i])) check++;
         if (isOperator(str[i])) check--;
-
         if (check < 0) return (true);
     }
+    if (check != 0) return (true);
     return (false);
 }
 

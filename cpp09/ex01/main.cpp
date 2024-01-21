@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:28:36 by christianme       #+#    #+#             */
-/*   Updated: 2024/01/18 17:48:30 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/21 17:11:10 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "RPN.hpp"
 
 int main(int argc, char **argv) {
-    if (argc != 2) {
+    if (argc != 2 || argv == NULL || strlen(argv[1]) == 0) {
         std::cout << RED << "Error: " << CLEAR << "Usage: ./RPN <string>" << std::endl;
         return (1);
     }

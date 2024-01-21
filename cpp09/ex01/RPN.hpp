@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 14:00:29 by christianme       #+#    #+#             */
-/*   Updated: 2024/01/18 19:57:49 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/21 17:05:22 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 class RPN {
    public:
-    RPN(void);
+    RPN();
     RPN(const std::string &str);
     RPN(const RPN &other);
     RPN &operator=(const RPN &other);
