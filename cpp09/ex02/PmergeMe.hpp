@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:16:19 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/21 22:38:55 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/22 09:09:29 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #define GREEN "\033[0;32m"
 #define CLEAR "\033[0m"
 
-#define MAX_AMOUNT_NBRS 3000
+#define MAX_AMOUNT_NBRS 30000
 
 template <typename T>
 class PmergeMe {

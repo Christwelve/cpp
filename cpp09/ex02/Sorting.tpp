@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 13:21:33 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/21 22:37:58 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/22 09:04:42 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <cmath>
 #include <cstddef>
 #include <ctime>
+#include <iomanip>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -36,11 +37,12 @@ void PmergeMe<T>::sorting(T& container) {
     clock_t end = clock();
 
     printContainer("After", container);
+    double diff = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000;
     if (this->duplicate_) {
         std::cout << YELLOW << "Info: " << CLEAR << this->duplicates_ << " duplicates detected and ignored" << std::endl;
     }
     std::cout << "Time to process a range of " << container.size() << " elements with " << GREEN << "std::" << ContainerType<T>::name() << CLEAR
-              << ": " << GREEN << end - start << "us" << CLEAR << std::endl
+              << ": " << GREEN << diff << std::fixed << std::setprecision(5) << "µs" << CLEAR << std::endl
               << std::endl;
 }
 
