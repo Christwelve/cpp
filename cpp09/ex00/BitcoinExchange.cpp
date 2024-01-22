@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:10:18 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/21 15:59:57 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/22 05:51:27 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,16 @@ BitcoinExchange::BitcoinExchange(const std::string &filename) {
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &bitcoinExchange) {
-    *this = bitcoinExchange;
+    if (this != &bitcoinExchange) {
+        *this = bitcoinExchange;
+    }
     return;
 }
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &bitcoinExchange) {
-    this->db_ = bitcoinExchange.db_;
+    if (this != &bitcoinExchange) {
+        this->db_ = bitcoinExchange.db_;
+    }
     return *this;
 }
 
@@ -39,45 +43,10 @@ BitcoinExchange::~BitcoinExchange(void) { return; }
 
 // ---------------------------- Parsing -----------------------------------------//
 
-int BitcoinExchange::invalidDate(Date &date, size_t &i) {
-    bool leapYear = (date.year % 4 == 0 && date.year % 100 != 0) || (date.year % 400 == 0);
-    int months[] = {31, leapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
-    if (date.month < 1 || date.month > 12) {
-        std::cout << RED << "Error: " << CLEAR << "Invalid date format: Wrong month @line: " << i << std::endl;
-        return (1);
-    }
-    if (date.day < 1 || date.day > months[date.month - 1]) {
-        std::cout << RED << "Error: " << CLEAR << "Invalid date format: Wrong day  @line: " << i << std::endl;
-        return (1);
-    }
-    if ((date.year == 2009 && date.month == 1 && date.day < 3) || date.year < 2009) {
-        std::cout << RED << "Error: " << CLEAR << "Bitcoin Genesis Block was created on the 3rd of January 2009 🤡" << std::endl;
-        return (1);
-    }
-    if (date.year > 2024) {
-        std::cout << RED << "Error: " << CLEAR << "Invalid date format: Wrong year @line: " << i << std::endl;
-        return (1);
-    }
-    return (0);
-}
-
-int BitcoinExchange::invalidAmount(float &amount, size_t &i) {
-    if (amount < 0) {
-        std::cout << RED << "Error: " << CLEAR << "Invalid amount format: Negative amount @line: " << i << std::endl;
-        return (1);
-    }
-    if (amount > 1000) {
-        std::cout << RED << "Error: " << CLEAR << "Invalid amount format: Amount too high @line: " << i << std::endl;
-        return (1);
-    }
-    return (0);
-}
-
 void BitcoinExchange::getDB(void) {
     std::fstream csvFile(DB_PATH);
     if (!csvFile.is_open()) {
-        std::cout << "Error: Cannot open csv file" << std::endl;
+        std::cout << RED << "Error: " << CLEAR << "Cannot open csv file" << std::endl;
         return;
     }
 
@@ -104,7 +73,7 @@ void BitcoinExchange::getDB(void) {
             date.month = month;
             date.day = day;
 
-            db_[date] = price;
+            this->db_[date] = price;
         }
     }
     csvFile.close();
@@ -139,7 +108,8 @@ void BitcoinExchange::getInput(const std::string &filename) {
             std::stringstream dateStream(dateStr);
             std::stringstream amountStream(amountStr);
 
-            if (!(dateStream >> year) || !(dateStream >> dash) || !(dateStream >> month) || !(dateStream >> dash) || !(dateStream >> day)) {
+            if (!(dateStream >> year) || !(dateStream >> dash) || dash != '=' || !(dateStream >> month) || !(dateStream >> dash) || dash != '=' ||
+                !(dateStream >> day)) {
                 std::cerr << RED << "Error: " << CLEAR << "Invalid date format: @line: " << i << std::endl;
                 ++i;
                 continue;
@@ -151,8 +121,14 @@ void BitcoinExchange::getInput(const std::string &filename) {
                 continue;
             }
 
-            if (dateStream >> trash || amountStream >> trash) {
+            if (dateStream >> trash) {
                 std::cerr << RED << "Error: " << CLEAR << "Invalid date format: @line: " << i << std::endl;
+                ++i;
+                continue;
+            }
+
+            if (amountStream >> trash) {
+                std::cerr << RED << "Error: " << CLEAR << "Invalid amount format: @line: " << i << std::endl;
                 ++i;
                 continue;
             }
@@ -186,4 +162,39 @@ void BitcoinExchange::getInput(const std::string &filename) {
         ++i;
     }
     file.close();
+}
+
+int BitcoinExchange::invalidDate(Date &date, size_t &i) {
+    bool leapYear = (date.year % 4 == 0 && date.year % 100 != 0) || (date.year % 400 == 0);
+    int months[] = {31, leapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    if (date.month < 1 || date.month > 12) {
+        std::cout << RED << "Error: " << CLEAR << "Invalid date format: Wrong month @line: " << i << std::endl;
+        return (1);
+    }
+    if (date.day < 1 || date.day > months[date.month - 1]) {
+        std::cout << RED << "Error: " << CLEAR << "Invalid date format: Wrong day  @line: " << i << std::endl;
+        return (1);
+    }
+    if ((date.year == 2009 && date.month == 1 && date.day < 3) || date.year < 2009) {
+        std::cout << RED << "Error: " << CLEAR << "Bitcoin Genesis Block was created on the 3rd of January 2009 🤡" << std::endl;
+        return (1);
+    }
+    if (date.year > 2024) {
+        std::cout << RED << "Error: " << CLEAR << "Invalid date format: Wrong year @line: " << i << std::endl;
+        return (1);
+    }
+    return (0);
+}
+
+int BitcoinExchange::invalidAmount(float &amount, size_t &i) {
+    if (amount < 0) {
+        std::cout << RED << "Error: " << CLEAR << "Invalid amount format: Negative amount @line: " << i << std::endl;
+        return (1);
+    }
+    if (amount > 1000) {
+        std::cout << RED << "Error: " << CLEAR << "Invalid amount format: Amount too high @line: " << i << std::endl;
+        return (1);
+    }
+    return (0);
 }

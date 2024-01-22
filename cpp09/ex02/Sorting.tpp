@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 13:21:33 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/21 15:48:34 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/21 22:37:58 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,11 @@ void PmergeMe<T>::sorting(T& container) {
     clock_t end = clock();
 
     printContainer("After", container);
-    std::cout << "Time to process a range of " << container.size() << " elements with std::" << GREEN << ContainerType<T>::name() << CLEAR << ": "
-              << GREEN << end - start << "us" << CLEAR << std::endl
+    if (this->duplicate_) {
+        std::cout << YELLOW << "Info: " << CLEAR << this->duplicates_ << " duplicates detected and ignored" << std::endl;
+    }
+    std::cout << "Time to process a range of " << container.size() << " elements with " << GREEN << "std::" << ContainerType<T>::name() << CLEAR
+              << ": " << GREEN << end - start << "us" << CLEAR << std::endl
               << std::endl;
 }
 
@@ -59,32 +62,50 @@ void PmergeMe<T>::n2Chunks(T& container) {
     for (size_t i = 0; i < container.size(); i += 2) {
         if (container[i] < container[i + 1]) std::swap(container[i], container[i + 1]);
     }
-    // std::cout << "\nAfter single pair sort" << std::endl;
-    // for (size_t i = 0; i < container.size(); i++) {
-    //     std::cout << "container[" << i << "] = " << container[i] << std::endl;
-    // }
-    sortPairsRecursively(container);
-    // std::cout << "\nAfter pair sort " << std::endl;
-    // for (size_t i = 0; i < container.size(); i++) {
-    //     std::cout << "container[" << i << "] = " << container[i] << std::endl;
-    // }
+
+    // printContainer("Pair", container);
+    sortPairsRecursively(container.begin(), container.end());
+    // printContainer("Merge", container);
 }
 
 template <typename T>
-void PmergeMe<T>::sortPairsRecursively(T& container) {
-    if (container.size() <= 2) {
+void PmergeMe<T>::sortPairsRecursively(typename T::iterator begin, typename T::iterator end) {
+    if (end - begin <= 2) {
         return;
     }
 
-    bool swapped = false;
-    for (size_t i = 0; i < container.size() - 3; i += 2) {
-        if (container[i] > container[i + 2]) {
-            std::swap(container[i], container[i + 2]);
-            std::swap(container[i + 1], container[i + 3]);
-            swapped = true;
+    typename T::iterator middle = begin + ((end - begin) / 2 & ~1);
+
+    sortPairsRecursively(begin, middle);
+    sortPairsRecursively(middle, end);
+
+    mergePairs(begin, middle, end);
+}
+
+template <typename T>
+void PmergeMe<T>::mergePairs(typename T::iterator begin, typename T::iterator middle, typename T::iterator end) {
+    T temp(begin, end);
+
+    typename T::iterator it_left = temp.begin(), it_right = temp.begin() + (middle - begin), it = begin;
+    while (it_left != temp.begin() + (middle - begin) && it_right != temp.end()) {
+        if (*it_left <= *it_right) {
+            *it++ = *it_left++;
+            *it++ = *it_left++;
+        } else {
+            *it++ = *it_right++;
+            *it++ = *it_right++;
         }
     }
-    if (swapped) sortPairsRecursively(container);
+
+    while (it_left != temp.begin() + (middle - begin)) {
+        *it++ = *it_left++;
+        *it++ = *it_left++;
+    }
+
+    while (it_right != temp.end()) {
+        *it++ = *it_right++;
+        *it++ = *it_right++;
+    }
 }
 
 template <typename T>
@@ -95,15 +116,12 @@ void PmergeMe<T>::devideChains(T& container) {
     }
     std::reverse(buffer_.begin(), buffer_.end());
 
-    // Printing States of vStack and buffer_
-    // std::cout << "\nvStack after dividing " << std::endl;
-    // for (size_t i = 0; i < container.size(); i++) {
-    //     std::cout << "container[" << i << "] = " << container[i] << std::endl;
-    // }
-    // std::cout << "\nbuffer_ after dividing " << std::endl;
+    // printContainer("Main", container);
+    // std::cout << "Buffer : ";
     // for (size_t i = 0; i < buffer_.size(); i++) {
-    //     std::cout << "buffer__[" << i << "] = " << buffer_[i] << std::endl;
+    //     std::cout << buffer_[i] << " ";
     // }
+    // std::cout << std::endl;
 }
 
 template <typename T>

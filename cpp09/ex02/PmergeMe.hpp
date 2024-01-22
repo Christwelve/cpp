@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:16:19 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/21 15:46:12 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/21 22:38:55 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ class PmergeMe {
     bool leftover_;
     size_t leftoverNum_;
     std::vector<size_t> buffer_;
+    bool duplicate_;
     size_t duplicates_;
 
     int parseArguments(int argc, char** argv, T& container);
@@ -47,7 +48,8 @@ class PmergeMe {
     void sorting(T& container);
     void getLeftover(T& container);
     void n2Chunks(T& container);
-    void sortPairsRecursively(T& container);
+    void sortPairsRecursively(typename T::iterator begin, typename T::iterator end);
+    void mergePairs(typename T::iterator begin, typename T::iterator middle, typename T::iterator end);
     void devideChains(T& container);
     void applyJacobNumbers(T& container);
 };

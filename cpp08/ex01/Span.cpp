@@ -6,12 +6,13 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:21:19 by christianme       #+#    #+#             */
-/*   Updated: 2024/01/15 20:38:54 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/21 15:35:07 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
+#include <climits>
 #include <stdexcept>
 
 Span::Span() : N(0) {}
@@ -42,7 +43,7 @@ int Span::shortestSpan() {
         throw std::runtime_error("Not enough numbers in span");
     }
     std::sort(numbers.begin(), numbers.end());
-    int shortest;
+    int shortest = INT_MAX;
     for (unsigned int i = 0; i < numbers.size() - 1; ++i) {
         shortest = std::min(shortest, numbers[i + 1] - numbers[i]);
     }

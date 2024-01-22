@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:19:44 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/21 15:49:57 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/21 22:49:39 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,16 @@ PmergeMe<T>::PmergeMe(void) {
 }
 
 template <typename T>
-PmergeMe<T>::PmergeMe(int argc, char **argv, T &container) {
+PmergeMe<T>::PmergeMe(int argc, char **argv, T &container) : leftover_(false), duplicate_(false), duplicates_(0) {
     if (parseArguments(argc, argv, container)) return;
     sorting(container);
 }
 
 template <typename T>
 PmergeMe<T>::PmergeMe(const PmergeMe &other) {
-    *this = other;
+    if (this != &other) {
+        *this = other;
+    }
     return;
 }
 
@@ -43,6 +45,7 @@ PmergeMe<T> &PmergeMe<T>::operator=(const PmergeMe<T> &other) {
         leftover_ = other.leftover_;
         leftoverNum_ = other.leftoverNum_;
         buffer_ = other.buffer_;
+        duplicate_ = other.duplicate_;
         duplicates_ = other.duplicates_;
     }
     return (*this);
@@ -69,8 +72,8 @@ int PmergeMe<T>::parseArguments(int argc, char **argv, T &container) {
         if (std::find(container.begin(), container.end(), num) == container.end()) {
             container.push_back(num);
         } else {
-            std::cout << YELLOW << "Info: " << CLEAR << "Duplicate in position " << i << " detected and ignored" << std::endl;
-            duplicates_++;
+            this->duplicate_ = true;
+            this->duplicates_++;
         }
     }
     return (0);
@@ -78,7 +81,7 @@ int PmergeMe<T>::parseArguments(int argc, char **argv, T &container) {
 
 template <typename T>
 void PmergeMe<T>::printContainer(const std::string &str, T &container) {
-    std::cout << str << "   :";
+    std::cout << str << " : ";
     for (size_t i = 0; i < container.size(); i++) {
         std::cout << container[i] << " ";
     }

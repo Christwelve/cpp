@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:07:45 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/17 17:13:55 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/21 16:56:49 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int main(int argc, char const** argv) {
     if (argc != 2) {
-        std::cout << "Error: Please use ./btc <filename>.txt" << std::endl;
+        std::cout << RED << "Error: " << CLEAR << "Please use: ./btc <filename>.txt" << std::endl;
         return (1);
     }
     BitcoinExchange bitcoinExchange(argv[1]);

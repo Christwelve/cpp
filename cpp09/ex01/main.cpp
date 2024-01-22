@@ -6,10 +6,11 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:28:36 by christianme       #+#    #+#             */
-/*   Updated: 2024/01/21 17:11:10 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/21 23:28:52 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cstring>
 #include <iostream>
 
 #include "RPN.hpp"

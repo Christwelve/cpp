@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 13:10:27 by cmeng             #+#    #+#             */
-/*   Updated: 2024/01/19 14:39:42 by cmeng            ###   ########.fr       */
+/*   Updated: 2024/01/21 23:08:45 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ struct Date {
 
 class BitcoinExchange {
    public:
-    BitcoinExchange(void);                                               // Default Constructor
+    BitcoinExchange();                                                   // Default Constructor
     BitcoinExchange(const std::string &filename);                        // Constructor
     BitcoinExchange(const BitcoinExchange &bitcoinExchange);             // Copy Constructor
     BitcoinExchange &operator=(const BitcoinExchange &bitcoinExchange);  // Assignation Operator
@@ -45,8 +45,8 @@ class BitcoinExchange {
 
    private:
     std::map<Date, float> db_;
-    void getInput(const std::string &filename);
     void getDB(void);
+    void getInput(const std::string &filename);
     int invalidDate(Date &date, size_t &i);
     int invalidAmount(float &amount, size_t &i);
 };
